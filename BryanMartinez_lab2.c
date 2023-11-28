@@ -104,7 +104,20 @@ int main(){
             case 0:
                 // check if the command is history
                 if(strncmp(argv[0], "history",7)==0){
-                    // print out the history 
+                    // print out the history
+                    
+                    FILE *file = fopen(".myhistory", "r");
+                    
+                    if (file == NULL) {
+                        perror("Error opening file");
+                        return 1;
+                    }
+                    char c;
+                    while ((c = fgetc(file)) != EOF) {
+                        putchar(c);
+                    }
+                    fclose(file);
+                    
                     break; 
                 }
                 if(strncmp(argv[0], "erase",5)==0 && strncmp(argv[1], "history",7)==0){
